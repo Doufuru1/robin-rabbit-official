@@ -205,20 +205,22 @@ a { color: inherit; text-decoration: none; }
 .hero-visual { display: flex; justify-content: center; }
 .nft-showcase {
   position: relative;
-  width: 420px;
+  width: 320px;
   max-width: 100%;
-  aspect-ratio: 1/1;
 }
 .nft-showcase img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 24px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
   border: 1px solid var(--border);
-  box-shadow: 0 0 80px rgba(0, 240, 209, 0.15), inset 0 0 60px rgba(0, 240, 209, 0.05);
-  animation: sway 4s ease-in-out infinite;
+  background: rgba(0, 240, 209, 0.03);
+  animation: nftFloat 4s ease-in-out infinite;
 }
-@keyframes sway { 0%,100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(-8px) rotate(-2deg); } 50% { transform: translateX(0) rotate(0deg); } 75% { transform: translateX(8px) rotate(2deg); } }
+@keyframes nftFloat {
+  0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 24px rgba(0, 240, 209, 0.25)); }
+  50% { transform: translateY(-10px); filter: drop-shadow(0 0 44px rgba(0, 240, 209, 0.4)); }
+}
 .nft-badge {
   position: absolute;
   top: 16px; right: 16px;
