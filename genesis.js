@@ -545,7 +545,8 @@
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      const y = target.getBoundingClientRect().top + window.scrollY - 84;
+      const headerHeight = navbar ? navbar.offsetHeight : 72;
+      const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
       window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
