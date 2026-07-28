@@ -2,18 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "styles.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "script.js",
-      "use": "@vercel/static"
-    },
-    {
       "src": "genesis-nft.html",
       "use": "@vercel/static"
     },
@@ -36,14 +24,6 @@
       "dest": "/assets/$1"
     },
     {
-      "src": "/styles.css",
-      "dest": "/styles.css"
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js"
-    },
-    {
       "src": "/genesis.css",
       "dest": "/genesis.css"
     },
@@ -57,7 +37,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/genesis-nft.html"
     }
   ]
 }
