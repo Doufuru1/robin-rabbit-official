@@ -18,7 +18,9 @@
   window.addEventListener('resize', resize, { passive: true });
 
   class Particle {
-    constructor() { this.reset(); }
+    constructor() {
+      this.reset();
+    }
     reset() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
@@ -53,7 +55,11 @@
   function animate() {
     ctx.clearRect(0, 0, width, height);
     ctx.globalAlpha = 1;
-    for (const p of particles) { p.update(); p.draw(); }
+    for (const p of particles) {
+      p.update();
+      p.draw();
+    }
+    // connect nearby particles
     ctx.lineWidth = 0.6;
     for (let i = 0; i < particles.length; i++) {
       let a = particles[i];
@@ -89,8 +95,11 @@
 
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 20);
+    lastScroll = y;
   }, { passive: true });
 
   // Mobile nav toggle
@@ -111,7 +120,9 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add('active');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach((el) => observer.observe(el));
@@ -138,35 +149,6 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-value').forEach((el) => statObserver.observe(el));
-
-  // Distribution bars animation
-  const distObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const card = entry.target;
-      const bar = card.querySelector('.dist-bar');
-      if (bar) {
-        const width = bar.style.getPropertyValue('--width');
-        bar.style.setProperty('--width', '0%');
-        requestAnimationFrame(() => {
-          setTimeout(() => bar.style.setProperty('--width', width), 50);
-        });
-      }
-      distObserver.unobserve(card);
-    });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('.distribution-card').forEach((el) => distObserver.observe(el));
-
-  // 60-day release progress animation
-  const progressObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        progressObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.progress-fill').forEach((el) => progressObserver.observe(el));
 
   // Smooth anchor offset for fixed header
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

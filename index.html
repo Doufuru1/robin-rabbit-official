@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robin Rabbit | 协议化做市生态平台</title>
-  <meta name="description" content="Robin Rabbit 是由 Robin Labs 打造的新一代 DeFi 协议化做市生态平台，部署于 BNB Chain，通过 PMM、智能价值分配、60 天线性释放与保护价机制，构建可持续链上流动性收益协议。" />
+  <title>Robin Rabbit | 链上流动性与持续性收益生态</title>
+  <meta name="description" content="Robin Rabbit 是基于链上流动性与交易生态的持续性收益机制，让每一笔交易都为社区创造复利价值。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Background particles canvas -->
   <canvas id="bg-canvas"></canvas>
 
+  <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <a class="brand" href="#" aria-label="Robin Rabbit 首页">
@@ -23,69 +25,65 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#about">项目介绍</a></li>
-        <li><a href="#mechanism">核心机制</a></li>
-        <li><a href="#distribution">价值分配</a></li>
-        <li><a href="#release">释放与保护价</a></li>
+        <li><a href="#mechanism">收益机制</a></li>
+        <li><a href="#tokenomics">代币经济</a></li>
+        <li><a href="#roadmap">路线图</a></li>
         <li><a href="#community">社区</a></li>
       </ul>
       <a class="btn btn-primary nav-cta" href="#cta">启动 DApp</a>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <header class="hero" id="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
         <div class="badge reveal">
           <span class="badge-dot"></span>
-          <span>Robin Labs · BNB Chain · DeFi 协议化做市生态</span>
+          <span>WEB3 BUNNY · 去中心化收益协议</span>
         </div>
         <h1 class="hero-title reveal">
-          重新定义
-          <span class="text-gradient">链上流动性</span>
-          参与方式
+          链上流动性<br />
+          <span class="text-gradient">持续性收益</span> 生态
         </h1>
         <p class="hero-subtitle reveal">
-          Robin Rabbit 是由 Robin Labs 打造的新一代 DeFi 协议化做市生态平台。我们不取代 AMM，而是在 AMM 之上构建全新协议层，通过 PMM、智能价值分配与保护价机制，让链上流动性收益更透明、高效、可持续。
+          Robin Rabbit 将链上流动性与交易行为转化为可复利、可持续的社区收益。每一笔交易都在为持有者铸造未来。
         </p>
         <div class="hero-actions reveal">
           <a class="btn btn-primary btn-lg" href="#cta">立即参与</a>
           <a class="btn btn-outline btn-lg" href="#mechanism">了解机制</a>
         </div>
-
         <div class="hero-stats reveal">
           <div class="stat">
-            <span class="stat-value" data-target="1.7" data-suffix="×">0</span>
-            <span class="stat-label">协议收益额度</span>
+            <span class="stat-value" data-target="42.8" data-suffix="M">0</span>
+            <span class="stat-label">协议总流动性</span>
           </div>
           <div class="stat">
-            <span class="stat-value" data-target="60" data-suffix="天">0</span>
-            <span class="stat-label">线性释放</span>
+            <span class="stat-value" data-target="186" data-suffix="K">0</span>
+            <span class="stat-label">社区持有者</span>
           </div>
           <div class="stat">
-            <span class="stat-value" data-target="100" data-suffix="%">0</span>
-            <span class="stat-label">智能合约执行</span>
+            <span class="stat-value" data-target="12.4" data-suffix="%">0</span>
+            <span class="stat-label">年化收益率</span>
           </div>
         </div>
       </div>
-
       <div class="hero-visual reveal">
         <div class="mascot-ring">
           <img src="assets/robin-rabbit-styleguide.jpg" alt="Robin Rabbit Web3 兔子形象" class="mascot-main" />
           <div class="orbit orbit-1" aria-hidden="true"></div>
           <div class="orbit orbit-2" aria-hidden="true"></div>
           <div class="floating-card float-1">
-            <span class="fc-icon">⚙️</span>
-            <span>PMM 协议做市</span>
+            <span class="fc-icon">💧</span>
+            <span>流动性挖矿</span>
           </div>
           <div class="floating-card float-2">
-            <span class="fc-icon">🛡️</span>
-            <span>保护价兑现</span>
+            <span class="fc-icon">⚡</span>
+            <span>交易返佣</span>
           </div>
           <div class="floating-card float-3">
-            <span class="fc-icon">♻️</span>
-            <span>价值回流闭环</span>
+            <span class="fc-icon">🛡️</span>
+            <span>自动复利</span>
           </div>
         </div>
       </div>
@@ -95,358 +93,192 @@
     </div>
   </header>
 
-  <!-- About -->
-  <section class="section about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal">
-          <img src="assets/robin-rabbit-poses.jpg" alt="Robin Rabbit 多种姿态" />
-          <div class="glow-backdrop"></div>
-        </div>
-        <div class="about-copy">
-          <span class="section-tag reveal">项目介绍</span>
-          <h2 class="section-title reveal">
-            AMM 之上，<span class="text-gradient">全新协议层</span>
-          </h2>
-          <p class="reveal">
-            <strong>Robin Rabbit</strong> 并非取代传统 AMM，而是在 AMM 之上构建全新的协议层，通过重构用户参与方式、收益分配机制与价值流转路径，让用户以更加透明、高效、可持续的方式参与链上流动性生态。
-          </p>
-          <div class="about-points reveal">
-            <div class="about-point">
-              <div class="ap-icon">🔗</div>
-              <div>
-                <h4>部署于 BNB Chain</h4>
-                <p>首个核心协议选择 BNB Chain，兼顾性能、成本与生态扩展性。</p>
-              </div>
-            </div>
-            <div class="about-point">
-              <div class="ap-icon">🤝</div>
-              <div>
-                <h4>与 AMM 协同</h4>
-                <p>AMM 负责价格发现，Robin Rabbit 负责协议参与、收益计算与价值结算。</p>
-              </div>
-            </div>
-            <div class="about-point">
-              <div class="ap-icon">📜</div>
-              <div>
-                <h4>智能合约驱动</h4>
-                <p>所有资金 100% 自动买入代币，形成真实链上买盘，实现协议与市场同步增长。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Mechanisms -->
+  <!-- Mechanism Section -->
   <section class="section mechanism" id="mechanism">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">核心机制</span>
-        <h2 class="section-title">五大创新，<span class="text-gradient">重塑 DeFi 增长飞轮</span></h2>
-        <p class="section-desc">从协议化做市到保护价兑现，每一个机制都围绕「可持续价值增长」与「用户资产安全」设计。</p>
+        <span class="section-tag">收益机制</span>
+        <h2 class="section-title">交易即收益，<span class="text-gradient">流动性即权力</span></h2>
+        <p class="section-desc">Robin Rabbit 通过三层飞轮设计，将链上交易手续费、流动性激励与协议增长红利，持续返还给长期参与者。</p>
       </div>
-
       <div class="mechanism-grid">
         <article class="mech-card reveal">
           <div class="mech-icon" style="--accent:#00F0D1">1</div>
-          <h3>协议化做市（PMM）</h3>
-          <p>创新推出 <strong>PMM（Protocol Market Maker）协议化做市模型</strong>。AMM 负责市场价格发现，Robin Rabbit 负责协议参与、收益计算与价值结算。</p>
+          <h3>交易税收再分配</h3>
+          <p>每笔链上交易抽取低税率手续费，按比例自动分配给持币者与流动性提供者，形成被动收益流。</p>
           <ul class="mech-list">
-            <li>所有资金 100% 自动买入代币</li>
-            <li>形成真实链上买盘</li>
-            <li>协议与市场同步增长</li>
+            <li>实时链上分配</li>
+            <li>无需手动领取</li>
+            <li>持币即挖矿</li>
           </ul>
         </article>
-
         <article class="mech-card reveal">
           <div class="mech-icon" style="--accent:#1CF2A4">2</div>
-          <h3>1.7× 收益额度机制</h3>
-          <p>基于 <strong>AMM 2× 映射系数 × 85% 交互池比例</strong>，用户可获得 <strong>1.7 倍协议收益额度</strong>，且收益额度与二级市场价格波动隔离。</p>
+          <h3>流动性挖矿激励</h3>
+          <p>为指定交易对提供流动性，可获得 LP 代币与额外 RB 奖励，同时享受交易手续费分成。</p>
           <ul class="mech-list">
-            <li>AMM 2× 映射系数</li>
-            <li>85% 交互池比例</li>
-            <li>降低短期行情对收益的影响</li>
+            <li>双层收益叠加</li>
+            <li>无常损失保护</li>
+            <li>灵活进出</li>
           </ul>
         </article>
-
         <article class="mech-card reveal">
           <div class="mech-icon" style="--accent:#FFD240">3</div>
-          <h3>智能价值分配</h3>
-          <p>每次协议参与资金自动完成价值分配：85% 进入协议交互池，12% 进入十五层社区激励池，3% 进入生态贡献池。</p>
+          <h3>协议复利回购</h3>
+          <p>协议收入进入国库智能合约，定期执行公开市场回购与销毁，持续提升代币稀缺性与价值捕获。</p>
           <ul class="mech-list">
-            <li>85% 交互池：收益兑现与流动性承接</li>
-            <li>12% 十五层社区激励池：逐层释放</li>
-            <li>3% 生态贡献池：复投与长期建设</li>
-          </ul>
-        </article>
-
-        <article class="mech-card reveal">
-          <div class="mech-icon" style="--accent:#00B4D8">4</div>
-          <h3>60 天线性释放机制</h3>
-          <p>采用 <strong>Time-based Release</strong> 时间释放模型，收益按照 60 天线性释放，每日释放约 2.83%，避免集中兑现压力。</p>
-          <ul class="mech-list">
-            <li>60 天线性释放，每日约 2.83%</li>
-            <li>流动性持续增长</li>
-            <li>社区共识稳定增强</li>
-          </ul>
-        </article>
-
-        <article class="mech-card reveal">
-          <div class="mech-icon" style="--accent:#6C7A89">5</div>
-          <h3>保护价兑现机制</h3>
-          <p>引入 <strong>Protection Price（保护价）</strong>：<strong>保护价 = Max（当前价格，1 小时前价格）</strong>，有效降低恶意砸盘、闪电贷与价格操纵风险。</p>
-          <ul class="mech-list">
-            <li>Max（当前价，1 小时前价格）</li>
-            <li>抵御恶意砸盘与闪电贷</li>
-            <li>提升协议稳定性与资产安全</li>
-          </ul>
-        </article>
-
-        <article class="mech-card reveal">
-          <div class="mech-icon" style="--accent:#FFD240">6</div>
-          <h3>完整价值回流闭环</h3>
-          <p>交易产生 1% 交易税与 5% 盈利税，全部回流协议生态，用于协议建设、市场推广、社区激励、NFT 生态与流动性增强。</p>
-          <ul class="mech-list">
-            <li>1% 交易税 + 5% 盈利税</li>
-            <li>全部回流生态建设</li>
-            <li>形成价值飞轮闭环</li>
+            <li>自动回购销毁</li>
+            <li>国库公开透明</li>
+            <li>通缩模型</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Value Distribution -->
-  <section class="section distribution" id="distribution">
+  <!-- Ecosystem Section -->
+  <section class="section ecosystem" id="ecosystem">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">价值分配</span>
-        <h2 class="section-title">每次参与，<span class="text-gradient">智能合约自动分配</span></h2>
-        <p class="section-desc">资金流向公开透明、链上可验证，每一次协议参与都按照既定比例完成价值分配。</p>
-      </div>
-
-      <div class="distribution-grid">
-        <div class="distribution-card large reveal">
-          <div class="dist-percent">85%</div>
-          <h3>协议交互池</h3>
-          <p>用于后续收益兑现与流动性承接，是协议持续运行的核心资金池。</p>
-          <div class="dist-bar" style="--width:85%; --color:#00F0D1"></div>
+      <div class="ecosystem-grid">
+        <div class="ecosystem-visual reveal">
+          <img src="assets/robin-rabbit-poses.jpg" alt="Robin Rabbit 多种姿态" />
+          <div class="glow-backdrop"></div>
         </div>
-        <div class="distribution-card reveal">
-          <div class="dist-percent">12%</div>
-          <h3>十五层社区激励池</h3>
-          <p>满足任一解锁条件即可逐层释放奖励，持续激励生态增长。</p>
-          <div class="dist-bar" style="--width:12%; --color:#FFD240"></div>
-        </div>
-        <div class="distribution-card reveal">
-          <div class="dist-percent">3%</div>
-          <h3>生态贡献池</h3>
-          <p>用于复投激励、社区建设、长期贡献者奖励及生态发展。</p>
-          <div class="dist-bar" style="--width:3%; --color:#1CF2A4"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Release & Protection -->
-  <section class="section release" id="release">
-    <div class="container">
-      <div class="release-grid">
-        <div class="release-block reveal">
-          <span class="section-tag">Time-based Release</span>
-          <h2 class="section-title">
-            60 天线性释放
-            <span class="text-gradient">时间换空间</span>
-          </h2>
-          <p>收益按照 60 天线性释放，每日释放约 2.83%，有效避免集中兑现带来的市场压力，使流动性持续增长、社区共识不断增强、协议价值稳定释放。</p>
-          <div class="release-progress">
-            <div class="progress-labels">
-              <span>第 1 天</span>
-              <span>第 30 天</span>
-              <span>第 60 天</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" data-width="100%"></div>
-            </div>
-            <div class="progress-notes">
-              <div class="progress-note">
-                <span class="note-dot" style="background:#00F0D1"></span>
-                <span>每日释放约 2.83%</span>
+        <div class="ecosystem-copy">
+          <span class="section-tag reveal">生态场景</span>
+          <h2 class="section-title reveal">一个角色，<span class="text-gradient">无限生态</span></h2>
+          <p class="section-desc reveal">从 DEX 聚合交易到链上社交交易，从 NFT 流动性池到跨链收益桥，Robin Rabbit 正在构建全链可持续收益网络。</p>
+          <div class="feature-list">
+            <div class="feature-item reveal">
+              <div class="feature-icon">🔄</div>
+              <div>
+                <h4>DEX 聚合器</h4>
+                <p>一键比价，最优路径执行，节省 Gas 与滑点。</p>
               </div>
-              <div class="progress-note">
-                <span class="note-dot" style="background:#FFD240"></span>
-                <span>60 天完全释放</span>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">🌉</div>
+              <div>
+                <h4>跨链收益桥</h4>
+                <p>支持多链资产无缝迁移，收益不中断。</p>
+              </div>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">🎨</div>
+              <div>
+                <h4>NFT 流动性池</h4>
+                <p>为非标资产提供碎片化流动性与借贷支持。</p>
+              </div>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">📊</div>
+              <div>
+                <h4>链上数据面板</h4>
+                <p>实时收益、持仓、协议数据一目了然。</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="release-block protection reveal">
-          <span class="section-tag">Protection Price</span>
-          <h2 class="section-title">
-            保护价兑现
-            <span class="text-gradient">抵御极端行情</span>
-          </h2>
-          <p>兑现价格计算方式：</p>
-          <div class="formula-card">
-            <span class="formula">保护价 = Max（当前价格，1 小时前价格）</span>
+  <!-- Tokenomics Section -->
+  <section class="section tokenomics" id="tokenomics">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">代币经济</span>
+        <h2 class="section-title">RB Token <span class="text-gradient">价值捕获</span></h2>
+        <p class="section-desc">总供应量 10 亿枚，无预挖、无团队暗仓，全部通过流动性挖矿、交易激励与社区贡献释放。</p>
+      </div>
+      <div class="tokenomics-grid">
+        <div class="token-chart reveal">
+          <div class="ring-chart" aria-label="RB 代币分配：流动性 40%，交易激励 25%，生态建设 15%，国库回购 12%，团队 8%">
+            <svg viewBox="0 0 200 200" class="chart-svg">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#0b1623" stroke-width="28" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#00F0D1" stroke-width="28" stroke-dasharray="201 503" stroke-dashoffset="0" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#1CF2A4" stroke-width="28" stroke-dasharray="126 503" stroke-dashoffset="-201" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#FFD240" stroke-width="28" stroke-dasharray="75 503" stroke-dashoffset="-327" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#6C7A89" stroke-width="28" stroke-dasharray="60 503" stroke-dashoffset="-402" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#00B4D8" stroke-width="28" stroke-dasharray="40 503" stroke-dashoffset="-462" />
+            </svg>
+            <div class="ring-center">
+              <span class="rc-value">1B</span>
+              <span class="rc-label">RB 总量</span>
+            </div>
           </div>
-          <ul class="protection-list">
-            <li><span>🛡️</span> 降低恶意砸盘影响</li>
-            <li><span>⚡</span> 抵御闪电贷攻击</li>
-            <li><span>📉</span> 防止短时价格操纵</li>
-            <li><span>🔒</span> 抑制恶意套利行为</li>
+        </div>
+        <div class="token-legend reveal">
+          <div class="legend-item"><span class="legend-dot" style="background:#00F0D1"></span><span>流动性激励 40%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#1CF2A4"></span><span>交易挖矿 25%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#FFD240"></span><span>生态建设 15%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#6C7A89"></span><span>国库回购 12%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#00B4D8"></span><span>团队与顾问 8%</span></div>
+          <div class="token-info">
+            <div class="info-row"><span>合约</span><span>0xRobin...Rabbit</span></div>
+            <div class="info-row"><span>网络</span><span>ETH / BSC / Base</span></div>
+            <div class="info-row"><span>税收</span><span>买 3% / 卖 5%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section class="section roadmap" id="roadmap">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">路线图</span>
+        <h2 class="section-title">从兔子洞到<span class="text-gradient">全链生态</span></h2>
+      </div>
+      <div class="roadmap-timeline">
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 1</span>
+          <h3>品牌启动</h3>
+          <ul>
+            <li>Robin Rabbit 官网与视觉发布</li>
+            <li>社区空投与社交媒体矩阵</li>
+            <li>RB Token 公平启动</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 2</span>
+          <h3>流动性产品</h3>
+          <ul>
+            <li>启动 DEX 流动性激励池</li>
+            <li>交易返佣与持币分红上线</li>
+            <li>链上数据面板与收益追踪</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 3</span>
+          <h3>生态扩展</h3>
+          <ul>
+            <li>NFT 碎片化流动性池</li>
+            <li>跨链收益桥接</li>
+            <li>DAO 治理与提案系统</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 4</span>
+          <h3>全链网络</h3>
+          <ul>
+            <li>Robin Rabbit 钱包与支付</li>
+            <li>机构流动性接入</li>
+            <li>真实世界资产收益协议</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Value Loop -->
-  <section class="section value-loop" id="loop">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">价值回流闭环</span>
-        <h2 class="section-title">
-          参与 → 做市 → 收益 → 释放 → 兑现 → 回流 → 增长
-        </h2>
-      </div>
-
-      <div class="loop-diagram reveal">
-        <div class="loop-step"><span class="loop-icon">🤝</span><span>参与</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">⚙️</span><span>做市</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">💰</span><span>收益</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">📅</span><span>释放</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">🛡️</span><span>兑现</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">♻️</span><span>回流</span></div>
-        <div class="loop-arrow" aria-hidden="true">➜</div>
-        <div class="loop-step"><span class="loop-icon">🚀</span><span>增长</span></div>
-      </div>
-
-      <div class="taxes-grid reveal">
-        <div class="tax-card">
-          <div class="tax-percent">1%</div>
-          <div class="tax-name">交易税</div>
-          <p>全部回流协议生态，用于持续建设与市场推广。</p>
-        </div>
-        <div class="tax-card">
-          <div class="tax-percent">5%</div>
-          <div class="tax-name">盈利税</div>
-          <p>用于社区激励、创世 NFT、品牌发展与流动性增强。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- User Value -->
-  <section class="section user-value" id="value">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">用户价值</span>
-        <h2 class="section-title">加入 Robin Rabbit，<span class="text-gradient">你将获得</span></h2>
-      </div>
-
-      <div class="value-grid">
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>1.7× 协议收益额度</h3>
-            <p>收益与市场波动相对隔离，降低短期行情干扰。</p>
-          </div>
-        </div>
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>15 层社区奖励体系</h3>
-            <p>满足条件逐层解锁，激励更加丰富多元。</p>
-          </div>
-        </div>
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>60 天线性释放机制</h3>
-            <p>降低集中兑现压力，流动性稳步增长。</p>
-          </div>
-        </div>
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>保护价兑现机制</h3>
-            <p>有效应对极端市场行情，保障资产安全。</p>
-          </div>
-        </div>
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>交易税与盈利税持续回流</h3>
-            <p>不断增强协议价值与社区长期收益。</p>
-          </div>
-        </div>
-        <div class="value-item reveal">
-          <span class="value-check">✅</span>
-          <div>
-            <h3>全链上智能合约执行</h3>
-            <p>公开透明、可验证、无需信任第三方。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Advantages -->
-  <section class="section advantages" id="advantages">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">核心优势</span>
-        <h2 class="section-title">
-          不是重新定义交易，而是重新定义
-          <span class="text-gradient">链上流动性参与方式</span>
-        </h2>
-      </div>
-
-      <div class="advantages-grid reveal">
-        <div class="advantage-card">
-          <div class="adv-icon">⚙️</div>
-          <h3>PMM 协议化做市</h3>
-        </div>
-        <div class="advantage-card">
-          <div class="adv-icon">🧠</div>
-          <h3>智能价值分配</h3>
-        </div>
-        <div class="advantage-card">
-          <div class="adv-icon">🛡️</div>
-          <h3>收益隔离保护</h3>
-        </div>
-        <div class="advantage-card">
-          <div class="adv-icon">📉</div>
-          <h3>保护价机制</h3>
-        </div>
-        <div class="advantage-card">
-          <div class="adv-icon">♻️</div>
-          <h3>持续价值回流</h3>
-        </div>
-      </div>
-
-      <p class="advantages-summary reveal">
-        通过 <strong>PMM 协议化做市 + 智能价值分配 + 收益隔离 + 保护价机制 + 持续价值回流</strong> 五大创新，Robin Rabbit 构建一个更加透明、安全、高效、可持续的 DeFi 增长生态。
-      </p>
-    </div>
-  </section>
-
-  <!-- CTA -->
+  <!-- CTA Section -->
   <section class="section cta" id="cta">
     <div class="container">
       <div class="cta-card reveal">
         <div class="cta-copy">
           <h2>加入 Robin Rabbit 生态</h2>
-          <p>成为链上流动性革命的一部分，体验透明、安全、可持续的 DeFi 协议化做市收益。</p>
+          <p>成为链上流动性革命的一部分，让每一次交易、每一份流动性都产生持续价值。</p>
           <div class="cta-actions">
             <a class="btn btn-primary btn-lg" href="#" target="_blank">连接钱包</a>
             <a class="btn btn-outline btn-lg" href="https://t.me/" target="_blank">加入 Telegram</a>
@@ -459,7 +291,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Community / Footer -->
   <footer class="footer" id="community">
     <div class="container">
       <div class="footer-grid">
@@ -468,7 +300,7 @@
             <span class="brand-logo">🐰</span>
             <span class="brand-text">Robin Rabbit</span>
           </a>
-          <p>Robin Labs 打造的新一代 DeFi 协议化做市生态平台。</p>
+          <p>WEB3 BUNNY · DECENTRALIZE EVERYTHING</p>
           <div class="social-links">
             <a href="#" aria-label="Twitter">𝕏</a>
             <a href="#" aria-label="Telegram">TG</a>
@@ -477,10 +309,10 @@
           </div>
         </div>
         <div class="footer-links">
-          <h4>协议</h4>
-          <a href="#about">项目介绍</a>
-          <a href="#mechanism">核心机制</a>
-          <a href="#distribution">价值分配</a>
+          <h4>产品</h4>
+          <a href="#mechanism">收益机制</a>
+          <a href="#tokenomics">代币经济</a>
+          <a href="#ecosystem">生态场景</a>
           <a href="#cta">启动 DApp</a>
         </div>
         <div class="footer-links">
