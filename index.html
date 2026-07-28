@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robin Rabbit | 链上流动性与持续性收益生态</title>
+  <meta name="description" content="Robin Rabbit 是基于链上流动性与交易生态的持续性收益机制，让每一笔交易都为社区创造复利价值。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Background particles canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#" aria-label="Robin Rabbit 首页">
+        <span class="brand-logo" aria-hidden="true">🐰</span>
+        <span class="brand-text">Robin Rabbit</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="切换导航" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#mechanism">收益机制</a></li>
+        <li><a href="#tokenomics">代币经济</a></li>
+        <li><a href="#roadmap">路线图</a></li>
+        <li><a href="#community">社区</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" href="#cta">启动 DApp</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="badge reveal">
+          <span class="badge-dot"></span>
+          <span>WEB3 BUNNY · 去中心化收益协议</span>
+        </div>
+        <h1 class="hero-title reveal">
+          链上流动性<br />
+          <span class="text-gradient">持续性收益</span> 生态
+        </h1>
+        <p class="hero-subtitle reveal">
+          Robin Rabbit 将链上流动性与交易行为转化为可复利、可持续的社区收益。每一笔交易都在为持有者铸造未来。
+        </p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary btn-lg" href="#cta">立即参与</a>
+          <a class="btn btn-outline btn-lg" href="#mechanism">了解机制</a>
+        </div>
+        <div class="hero-stats reveal">
+          <div class="stat">
+            <span class="stat-value" data-target="42.8" data-suffix="M">0</span>
+            <span class="stat-label">协议总流动性</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-target="186" data-suffix="K">0</span>
+            <span class="stat-label">社区持有者</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-target="12.4" data-suffix="%">0</span>
+            <span class="stat-label">年化收益率</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="mascot-ring">
+          <img src="assets/robin-rabbit-styleguide.jpg" alt="Robin Rabbit Web3 兔子形象" class="mascot-main" />
+          <div class="orbit orbit-1" aria-hidden="true"></div>
+          <div class="orbit orbit-2" aria-hidden="true"></div>
+          <div class="floating-card float-1">
+            <span class="fc-icon">💧</span>
+            <span>流动性挖矿</span>
+          </div>
+          <div class="floating-card float-2">
+            <span class="fc-icon">⚡</span>
+            <span>交易返佣</span>
+          </div>
+          <div class="floating-card float-3">
+            <span class="fc-icon">🛡️</span>
+            <span>自动复利</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Mechanism Section -->
+  <section class="section mechanism" id="mechanism">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">收益机制</span>
+        <h2 class="section-title">交易即收益，<span class="text-gradient">流动性即权力</span></h2>
+        <p class="section-desc">Robin Rabbit 通过三层飞轮设计，将链上交易手续费、流动性激励与协议增长红利，持续返还给长期参与者。</p>
+      </div>
+      <div class="mechanism-grid">
+        <article class="mech-card reveal">
+          <div class="mech-icon" style="--accent:#00F0D1">1</div>
+          <h3>交易税收再分配</h3>
+          <p>每笔链上交易抽取低税率手续费，按比例自动分配给持币者与流动性提供者，形成被动收益流。</p>
+          <ul class="mech-list">
+            <li>实时链上分配</li>
+            <li>无需手动领取</li>
+            <li>持币即挖矿</li>
+          </ul>
+        </article>
+        <article class="mech-card reveal">
+          <div class="mech-icon" style="--accent:#1CF2A4">2</div>
+          <h3>流动性挖矿激励</h3>
+          <p>为指定交易对提供流动性，可获得 LP 代币与额外 RB 奖励，同时享受交易手续费分成。</p>
+          <ul class="mech-list">
+            <li>双层收益叠加</li>
+            <li>无常损失保护</li>
+            <li>灵活进出</li>
+          </ul>
+        </article>
+        <article class="mech-card reveal">
+          <div class="mech-icon" style="--accent:#FFD240">3</div>
+          <h3>协议复利回购</h3>
+          <p>协议收入进入国库智能合约，定期执行公开市场回购与销毁，持续提升代币稀缺性与价值捕获。</p>
+          <ul class="mech-list">
+            <li>自动回购销毁</li>
+            <li>国库公开透明</li>
+            <li>通缩模型</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecosystem Section -->
+  <section class="section ecosystem" id="ecosystem">
+    <div class="container">
+      <div class="ecosystem-grid">
+        <div class="ecosystem-visual reveal">
+          <img src="assets/robin-rabbit-poses.jpg" alt="Robin Rabbit 多种姿态" />
+          <div class="glow-backdrop"></div>
+        </div>
+        <div class="ecosystem-copy">
+          <span class="section-tag reveal">生态场景</span>
+          <h2 class="section-title reveal">一个角色，<span class="text-gradient">无限生态</span></h2>
+          <p class="section-desc reveal">从 DEX 聚合交易到链上社交交易，从 NFT 流动性池到跨链收益桥，Robin Rabbit 正在构建全链可持续收益网络。</p>
+          <div class="feature-list">
+            <div class="feature-item reveal">
+              <div class="feature-icon">🔄</div>
+              <div>
+                <h4>DEX 聚合器</h4>
+                <p>一键比价，最优路径执行，节省 Gas 与滑点。</p>
+              </div>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">🌉</div>
+              <div>
+                <h4>跨链收益桥</h4>
+                <p>支持多链资产无缝迁移，收益不中断。</p>
+              </div>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">🎨</div>
+              <div>
+                <h4>NFT 流动性池</h4>
+                <p>为非标资产提供碎片化流动性与借贷支持。</p>
+              </div>
+            </div>
+            <div class="feature-item reveal">
+              <div class="feature-icon">📊</div>
+              <div>
+                <h4>链上数据面板</h4>
+                <p>实时收益、持仓、协议数据一目了然。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tokenomics Section -->
+  <section class="section tokenomics" id="tokenomics">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">代币经济</span>
+        <h2 class="section-title">RB Token <span class="text-gradient">价值捕获</span></h2>
+        <p class="section-desc">总供应量 10 亿枚，无预挖、无团队暗仓，全部通过流动性挖矿、交易激励与社区贡献释放。</p>
+      </div>
+      <div class="tokenomics-grid">
+        <div class="token-chart reveal">
+          <div class="ring-chart" aria-label="RB 代币分配：流动性 40%，交易激励 25%，生态建设 15%，国库回购 12%，团队 8%">
+            <svg viewBox="0 0 200 200" class="chart-svg">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#0b1623" stroke-width="28" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#00F0D1" stroke-width="28" stroke-dasharray="201 503" stroke-dashoffset="0" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#1CF2A4" stroke-width="28" stroke-dasharray="126 503" stroke-dashoffset="-201" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#FFD240" stroke-width="28" stroke-dasharray="75 503" stroke-dashoffset="-327" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#6C7A89" stroke-width="28" stroke-dasharray="60 503" stroke-dashoffset="-402" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#00B4D8" stroke-width="28" stroke-dasharray="40 503" stroke-dashoffset="-462" />
+            </svg>
+            <div class="ring-center">
+              <span class="rc-value">1B</span>
+              <span class="rc-label">RB 总量</span>
+            </div>
+          </div>
+        </div>
+        <div class="token-legend reveal">
+          <div class="legend-item"><span class="legend-dot" style="background:#00F0D1"></span><span>流动性激励 40%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#1CF2A4"></span><span>交易挖矿 25%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#FFD240"></span><span>生态建设 15%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#6C7A89"></span><span>国库回购 12%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#00B4D8"></span><span>团队与顾问 8%</span></div>
+          <div class="token-info">
+            <div class="info-row"><span>合约</span><span>0xRobin...Rabbit</span></div>
+            <div class="info-row"><span>网络</span><span>ETH / BSC / Base</span></div>
+            <div class="info-row"><span>税收</span><span>买 3% / 卖 5%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section class="section roadmap" id="roadmap">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">路线图</span>
+        <h2 class="section-title">从兔子洞到<span class="text-gradient">全链生态</span></h2>
+      </div>
+      <div class="roadmap-timeline">
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 1</span>
+          <h3>品牌启动</h3>
+          <ul>
+            <li>Robin Rabbit 官网与视觉发布</li>
+            <li>社区空投与社交媒体矩阵</li>
+            <li>RB Token 公平启动</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 2</span>
+          <h3>流动性产品</h3>
+          <ul>
+            <li>启动 DEX 流动性激励池</li>
+            <li>交易返佣与持币分红上线</li>
+            <li>链上数据面板与收益追踪</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 3</span>
+          <h3>生态扩展</h3>
+          <ul>
+            <li>NFT 碎片化流动性池</li>
+            <li>跨链收益桥接</li>
+            <li>DAO 治理与提案系统</li>
+          </ul>
+        </div>
+        <div class="roadmap-item reveal">
+          <span class="rm-phase">Phase 4</span>
+          <h3>全链网络</h3>
+          <ul>
+            <li>Robin Rabbit 钱包与支付</li>
+            <li>机构流动性接入</li>
+            <li>真实世界资产收益协议</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta" id="cta">
+    <div class="container">
+      <div class="cta-card reveal">
+        <div class="cta-copy">
+          <h2>加入 Robin Rabbit 生态</h2>
+          <p>成为链上流动性革命的一部分，让每一次交易、每一份流动性都产生持续价值。</p>
+          <div class="cta-actions">
+            <a class="btn btn-primary btn-lg" href="#" target="_blank">连接钱包</a>
+            <a class="btn btn-outline btn-lg" href="https://t.me/" target="_blank">加入 Telegram</a>
+          </div>
+        </div>
+        <div class="cta-mascot">
+          <img src="assets/robin-rabbit-styleguide.jpg" alt="Robin Rabbit" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community / Footer -->
+  <footer class="footer" id="community">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#">
+            <span class="brand-logo">🐰</span>
+            <span class="brand-text">Robin Rabbit</span>
+          </a>
+          <p>WEB3 BUNNY · DECENTRALIZE EVERYTHING</p>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Telegram">TG</a>
+            <a href="#" aria-label="Discord">DC</a>
+            <a href="#" aria-label="GitHub">GH</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>产品</h4>
+          <a href="#mechanism">收益机制</a>
+          <a href="#tokenomics">代币经济</a>
+          <a href="#ecosystem">生态场景</a>
+          <a href="#cta">启动 DApp</a>
+        </div>
+        <div class="footer-links">
+          <h4>社区</h4>
+          <a href="#">Twitter</a>
+          <a href="#">Telegram</a>
+          <a href="#">Discord</a>
+          <a href="#">Medium</a>
+        </div>
+        <div class="footer-links">
+          <h4>资源</h4>
+          <a href="#">白皮书</a>
+          <a href="#">GitHub</a>
+          <a href="#">审计报告</a>
+          <a href="#">品牌资源</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Robin Rabbit. All rights reserved.</p>
+        <p>本网站仅供信息展示，不构成任何投资建议。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
