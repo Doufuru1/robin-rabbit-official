@@ -175,7 +175,7 @@
 
   let quantity = 1;
   const PRICE = 1;
-  const MAX_PER_WALLET = 5;
+  const MAX_PER_WALLET = 1;
   const REMAINING = TOTAL - minted;
 
   function updateQuantity() {
