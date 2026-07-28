@@ -699,6 +699,8 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
+  .brand-text { display: none; }
+  .brand-logo { width: 34px; height: 34px; }
   .hero-title { font-size: clamp(1.7rem, 9vw, 2.2rem); }
   .hero-subtitle { font-size: 0.95rem; }
   .nft-showcase { width: 200px; }
