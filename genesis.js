@@ -1,6 +1,18 @@
 (function () {
   'use strict';
 
+  const TREASURY_ADDRESS = '0xcf4b9c46fda9a2a3b5a2f5264f814d83b215dd87';
+  const BNB_CHAIN_ID = 56;
+  const BNB_CHAIN_HEX = '0x38';
+  const BNB_RPC = 'https://bsc-dataseed.binance.org/';
+  const MINT_PRICE_BNB = '1.0';
+  const MAX_PER_WALLET = 1;
+  const NFT_IMAGE = 'assets/robin-rabbit-genesis-nft.jpg';
+
+  let signer = null;
+  let userAddress = null;
+  let provider = null;
+
   // Particle background
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
@@ -140,7 +152,7 @@
 
   // Mint progress (demo values)
   const TOTAL = 200;
-  let minted = 0; // In production, fetch from contract
+  let minted = 0;
   const fill = document.getElementById('mint-progress-fill');
   const mintedLabel = document.getElementById('minted-label');
   const percentLabel = document.getElementById('percent-label');
@@ -175,45 +187,201 @@
 
   let quantity = 1;
   const PRICE = 1;
-  const MAX_PER_WALLET = 1;
-  const REMAINING = TOTAL - minted;
 
   function updateQuantity() {
     if (!qtyValue || !totalPrice || !qtyMinus || !qtyPlus) return;
-    quantity = Math.max(1, Math.min(MAX_PER_WALLET, Math.min(quantity, REMAINING)));
     qtyValue.textContent = quantity;
     totalPrice.textContent = (quantity * PRICE) + ' BNB';
     qtyMinus.disabled = quantity <= 1;
-    qtyPlus.disabled = quantity >= MAX_PER_WALLET || quantity >= REMAINING;
+    qtyPlus.disabled = quantity >= MAX_PER_WALLET;
   }
   updateQuantity();
 
-  if (qtyMinus) {
-    qtyMinus.addEventListener('click', () => { quantity--; updateQuantity(); });
+  if (qtyMinus) qtyMinus.addEventListener('click', () => { quantity--; updateQuantity(); });
+  if (qtyPlus) qtyPlus.addEventListener('click', () => { quantity++; updateQuantity(); });
+
+  function showModal(title, message) {
+    if (!modal) return;
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modal.classList.add('active');
   }
-  if (qtyPlus) {
-    qtyPlus.addEventListener('click', () => { quantity++; updateQuantity(); });
+  if (modalClose) modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+  function getMintedCount(address) {
+    if (!address) return 0;
+    try {
+      const data = JSON.parse(localStorage.getItem('robinMinted') || '{}');
+      return data[address.toLowerCase()] || 0;
+    } catch { return 0; }
+  }
+  function setMintedCount(address, count) {
+    if (!address) return;
+    try {
+      const data = JSON.parse(localStorage.getItem('robinMinted') || '{}');
+      data[address.toLowerCase()] = count;
+      localStorage.setItem('robinMinted', JSON.stringify(data));
+    } catch {}
   }
 
-  if (mintBtn) {
-    mintBtn.addEventListener('click', () => {
-      if (!modal) return;
-      modalTitle.textContent = '连接钱包';
-      modalMessage.textContent = `你选择了 ${quantity} 张 Genesis NFT，需支付 ${quantity * PRICE} BNB。当前为演示界面，请使用 BNB Chain 钱包连接并完成认购。`;
-      modal.classList.add('active');
-    });
+  function hasWallet() {
+    return typeof window !== 'undefined' && window.ethereum;
   }
 
-  if (modalClose) {
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+  async function ensureBnbChain() {
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId === BNB_CHAIN_HEX) return true;
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: BNB_CHAIN_HEX }]
+      });
+      return true;
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: BNB_CHAIN_HEX,
+              chainName: 'BNB Chain Mainnet',
+              nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+              rpcUrls: [BNB_RPC],
+              blockExplorerUrls: ['https://bscscan.com']
+            }]
+          });
+          return true;
+        } catch (addError) { return false; }
+      }
+      return false;
+    }
   }
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
+
+  async function connectWallet() {
+    if (!hasWallet()) {
+      showModal('未检测到钱包', '请安装 MetaMask、Trust Wallet 或其他支持 BNB Chain 的钱包插件后刷新页面。');
+      return false;
+    }
+    try {
+      provider = new ethers.BrowserProvider(window.ethereum);
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const network = await provider.getNetwork();
+      if (Number(network.chainId) !== BNB_CHAIN_ID) {
+        const switched = await ensureBnbChain();
+        if (!switched) {
+          showModal('网络切换失败', '请手动将钱包切换至 BNB Chain Mainnet（链 ID 56）。');
+          return false;
+        }
+        provider = new ethers.BrowserProvider(window.ethereum);
+      }
+      signer = await provider.getSigner();
+      userAddress = await signer.getAddress();
+      updateMintButton();
+      renderMyNFTs();
+      return true;
+    } catch (err) {
+      showModal('连接失败', err?.message || '钱包连接被拒绝，请重试。');
+      return false;
+    }
   }
+
+  function updateMintButton() {
+    if (!mintBtn) return;
+    if (!userAddress) {
+      mintBtn.textContent = '连接钱包铸造';
+      return;
+    }
+    const count = getMintedCount(userAddress);
+    if (count >= MAX_PER_WALLET) {
+      mintBtn.textContent = '已完成铸造';
+      mintBtn.disabled = true;
+    } else {
+      mintBtn.textContent = '立即铸造';
+      mintBtn.disabled = false;
+    }
+  }
+
+  async function mint() {
+    if (!userAddress) {
+      const ok = await connectWallet();
+      if (!ok) return;
+    }
+    const count = getMintedCount(userAddress);
+    if (count >= MAX_PER_WALLET) {
+      showModal('铸造受限', '每个钱包最多铸造 1 张 Genesis NFT。');
+      return;
+    }
+    try {
+      const tx = await signer.sendTransaction({
+        to: TREASURY_ADDRESS,
+        value: ethers.parseEther(MINT_PRICE_BNB)
+      });
+      showModal('交易已提交', '交易哈希：' + tx.hash + '。请耐心等待链上确认...');
+      const receipt = await tx.wait();
+      if (receipt && receipt.status === 1) {
+        setMintedCount(userAddress, count + 1);
+        minted++;
+        updateProgress();
+        updateMintButton();
+        renderMyNFTs();
+        showModal('铸造成功 ✅', '你已成功支付 1 BNB 铸造 1 张 Genesis NFT。交易哈希：' + tx.hash);
+      } else {
+        showModal('交易失败', '链上确认失败，请检查钱包余额或 Gas 设置。');
+      }
+    } catch (err) {
+      showModal('铸造失败', err?.message || '交易被拒绝或发生错误。');
+    }
+  }
+
+  if (mintBtn) mintBtn.addEventListener('click', mint);
+
+  // My NFTs rendering
+  function renderMyNFTs() {
+    const section = document.getElementById('my-nfts');
+    const grid = document.getElementById('my-nfts-grid');
+    if (!section || !grid || !userAddress) return;
+    const count = getMintedCount(userAddress);
+    if (count <= 0) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = 'block';
+    grid.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const card = document.createElement('div');
+      card.className = 'my-nft-card';
+      card.innerHTML = `
+        <img src="${NFT_IMAGE}" alt="Robin Rabbit Genesis NFT #${i + 1}" />
+        <div class="my-nft-info">
+          <h4>Robin Rabbit Genesis</h4>
+          <p>#${String(i + 1).padStart(4, '0')}</p>
+          <span class="my-nft-address">${userAddress.slice(0, 6)}...${userAddress.slice(-4)}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    observer.observe(section);
+  }
+
+  // Auto connect on load if already authorized
+  async function autoConnect() {
+    if (!hasWallet()) return;
+    try {
+      provider = new ethers.BrowserProvider(window.ethereum);
+      const accounts = await provider.listAccounts();
+      if (accounts.length > 0) {
+        signer = await provider.getSigner();
+        userAddress = await signer.getAddress();
+        updateMintButton();
+        renderMyNFTs();
+      }
+    } catch {}
+  }
+  autoConnect();
 
   // Smooth anchor offset
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
