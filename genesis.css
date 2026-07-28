@@ -549,6 +549,58 @@ a { color: inherit; text-decoration: none; }
 .modal h3 { font-size: 1.3rem; margin-bottom: 12px; }
 .modal p { color: var(--text-muted); margin-bottom: 24px; }
 .modal .btn { width: 100%; }
+.modal-actions { display: grid; gap: 12px; margin: 24px 0; }
+.modal-actions .btn { width: 100%; }
+
+.wallet-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 210, 64, 0.08);
+  border: 1px solid rgba(255, 210, 64, 0.25);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.wallet-status.connected {
+  background: rgba(0, 240, 209, 0.08);
+  border-color: rgba(0, 240, 209, 0.25);
+  color: var(--primary);
+}
+.wallet-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.wallet-status.connected .wallet-status-dot { background: var(--primary); }
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  font-family: monospace;
+  font-size: 0.85rem;
+  word-break: break-all;
+  text-align: left;
+}
+.copy-row button {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+}
+.modal-note { font-size: 0.85rem; color: var(--text-muted); margin: 14px 0; }
+.manual-card {
+  background: rgba(15, 28, 44, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+}
+.manual-card h4 { font-size: 1.05rem; margin-bottom: 12px; }
+.manual-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
 
 /* Responsive */
 @media (max-width: 1100px) {
@@ -583,7 +635,7 @@ a { color: inherit; text-decoration: none; }
   .nav-links.open { transform: translateY(0); }
   .nav-toggle { display: flex; }
   .hero { padding-top: calc(var(--header-height) + 40px); }
-  .nft-showcase { width: 320px; }
+  .nft-showcase { width: 280px; }
   .features-grid { grid-template-columns: 1fr; }
   .privileges-grid { grid-template-columns: 1fr; }
   .identity-card { padding: 48px 24px; }

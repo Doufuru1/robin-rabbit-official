@@ -110,6 +110,11 @@
             </div>
           </div>
 
+          <div class="wallet-status" id="wallet-status">
+            <span class="wallet-status-dot"></span>
+            <span id="wallet-status-text">未连接钱包</span>
+          </div>
+
           <div class="mint-actions">
             <button class="btn btn-primary btn-lg" id="mint-btn">连接钱包铸造</button>
             <a class="btn btn-outline btn-lg" href="index.html">返回官网</a>
@@ -258,9 +263,14 @@
   <!-- Modal -->
   <div class="modal-overlay" id="mint-modal">
     <div class="modal">
-      <div class="modal-icon">🐰</div>
+      <div class="modal-icon" id="modal-icon">🐰</div>
       <h3 id="modal-title">连接钱包</h3>
-      <p id="modal-message">请使用 BNB Chain 钱包连接并完成铸造。当前为演示界面，实际合约地址请关注官方公告。</p>
+      <div id="modal-message">
+        <p>请使用 BNB Chain 钱包连接并完成铸造。</p>
+      </div>
+      <div class="modal-actions" id="modal-actions">
+        <!-- dynamic action buttons -->
+      </div>
       <button class="btn btn-primary" id="modal-close">我知道了</button>
     </div>
   </div>
