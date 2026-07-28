@@ -513,6 +513,30 @@
   }
   autoConnect();
 
+  // Simulation mode: preview post-mint state without a real transaction
+  const DEMO_ADDRESS = '0xDemoUser1234567890123456789012345678';
+  function simulateMint() {
+    userAddress = DEMO_ADDRESS;
+    setMintedCount(DEMO_ADDRESS, 1);
+    minted = Math.max(1, minted + 1);
+    updateProgress();
+    updateWalletStatus();
+    updateMintButton();
+    renderMyNFTs();
+    showModal('模拟状态 ✅', '当前展示的是铸造成功后的页面状态：钱包已连接、已持有 1 张 Genesis NFT。真实铸造需连接钱包并支付 1 BNB。', '🔮');
+  }
+  const simulateLink = document.getElementById('simulate-mint-link');
+  if (simulateLink) {
+    simulateLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      simulateMint();
+    });
+  }
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('simulated') === 'true') {
+    simulateMint();
+  }
+
   // Smooth anchor offset
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
