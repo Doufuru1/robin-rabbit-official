@@ -448,6 +448,23 @@
 
   if (mintBtn) mintBtn.addEventListener('click', mint);
 
+  // Top-right nav "链接钱包" should actually connect wallet
+  const navConnectWallet = document.getElementById('nav-connect-wallet');
+  if (navConnectWallet) {
+    navConnectWallet.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (!userAddress) {
+        await connectWallet();
+      } else {
+        const target = document.getElementById('mint');
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.scrollY - 84;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
   // My NFTs rendering
   function renderMyNFTs() {
     const section = document.getElementById('my-nfts');
